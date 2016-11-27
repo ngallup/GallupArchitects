@@ -1,5 +1,7 @@
 from flask import render_template
 from app import app
+from app import Job
+import os
 
 @app.route('/')
 @app.route('/home')
@@ -29,6 +31,19 @@ def careers():
     requirements, etc. and populate a side toolbar with each of these
     fields
     '''
+    # Read contents of all job text files
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    jobdir = os.path.join(basedir, 'jobs')
+    jobfiles = os.listdir(jobdir)
+    jobfiles.remove('example.txt') # Remove example file from list
+    jobfiles = [os.path.join(jobdir, job) for job in jobfiles]
+
+    # Inovoke Job class for cleanliness
+    jobs = [Job(jobfile) for jobfile in jobfiles]
+    #for job in jobfiles:
+    #    with open(job, 'r') as infile:
+            
+    
     return render_template('careers.html')
 
 @app.route('/contact')
