@@ -31,19 +31,18 @@ def careers():
     requirements, etc. and populate a side toolbar with each of these
     fields
     '''
-    # Read contents of all job text files
+    # Get list of all job descriptor files
     basedir = os.path.abspath(os.path.dirname(__file__))
     jobdir = os.path.join(basedir, 'jobs')
     jobfiles = os.listdir(jobdir)
-    jobfiles.remove('example.txt') # Remove example file from list
+    #jobfiles.remove('example.txt') # Remove example file from list
     jobfiles = [os.path.join(jobdir, job) for job in jobfiles]
-
-    # Inovoke Job class for cleanliness
-    jobs = [Job(jobfile) for jobfile in jobfiles]
-    #for job in jobfiles:
-    #    with open(job, 'r') as infile:
-            
-    
+        
+    # Inovoke Job class for cleanliness and remove empty contents
+    jobs = [Job.Job(jobfile) for jobfile in jobfiles]
+    jobs = list(filter(lambda job: job.contents, jobs))
+                
+    # Careers will need to react dynamically to job list
     return render_template('careers.html')
 
 @app.route('/contact')

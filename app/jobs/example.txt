@@ -9,7 +9,7 @@ This is a brief summary of what an architect does
 <requirements>
 This is a description of the minimum requirements necessary to perform this job
 
-<skill>
+<skills>
 -A
 -List
 -Of
@@ -17,3 +17,5 @@ This is a description of the minimum requirements necessary to perform this job
 
 <special>
 Special instructions for this particular position not described elsewhere
+
+<end>
