@@ -1,0 +1,19 @@
+# Note: All fields are optional
+
+<jobtitle>
+Architect
+
+<summary>
+This is a brief summary of what an architect does
+
+<requirements>
+This is a description of the minimum requirements necessary to perform this job
+
+<skill>
+-A
+-List
+-Of
+-Skills
+
+<special>
+Special instructions for this particular position not described elsewhere
