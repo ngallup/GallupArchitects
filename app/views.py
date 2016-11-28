@@ -3,27 +3,30 @@ from app import app
 from app import Job
 import os
 
+contact = {
+     'name': 'Timothy Gallup',
+     'phone': '(918) 553-0625',
+     'addr1': '555 S. Blah Ave',
+     'addr2': 'Tulsa, OK 55555',
+     'comp': 'Gallup Architects Pllc'
+ }
+
 @app.route('/')
 @app.route('/home')
 def homepage():
-    contact = {
-        'name': 'Timothy Gallup',
-        'phone': '(918) 553-0625',
-        'addr1': '555 S. Blah Ave',
-        'addr2': 'Tulsa, OK 55555',
-        'comp': 'Gallup Architects Pllc'
-    }
-    
+    print help(contact)
     return render_template('home.html',
                            contact=contact)
     
 @app.route('/projects')
 def projects():
-    return render_template('projects.html')
+    return render_template('projects.html',
+                           contact=contact)
 
 @app.route('/team')
 def team():
-    return render_template('team.html')
+    return render_template('team.html',
+                           contact=contact)
 
 @app.route('/careers')
 def careers():
@@ -43,8 +46,10 @@ def careers():
     jobs = list(filter(lambda job: job.contents, jobs))
                 
     # Careers will need to react dynamically to job list
-    return render_template('careers.html')
+    return render_template('careers.html',
+                           contact=contact)
 
 @app.route('/contact')
-def contact():
-    return render_template('contact.html')
+def contactus():
+    return render_template('contact.html',
+                           contact=contact)
