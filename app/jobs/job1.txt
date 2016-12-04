@@ -1,0 +1,19 @@
+<jobtitle>
+Architect 2
+
+<summary>
+This is a brief summary of what an architect does (2)
+
+<requirements>
+This is a description of the minimum requirements necessary to perform this job (2)
+
+<skills>
+-A
+-List
+-Of
+-Skills
+
+<special>
+Special instructions for this particular position not described elsewhere (2)
+
+<end>

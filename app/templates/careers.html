@@ -1,5 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>This is the careers page</p>
+	{% for job in joblist %}
+		<p>We have openings!  Please see the listing(s) below!</p>
+		<section>
+
+			<h2 class='jobtitle'>{{ job.contents.title }}</h1>
+			<p> {{ job.contents.summary }} </p>
+
+			<b>Requirements</b>
+			<p>{{ job.contents.reqs }} </p>
+
+			<b>Skills</b>
+			<p>{{ job.contents.skills }}</p>
+
+			{% if job.contents.special %}
+				<b>Special Instructions</b>
+				<p>{{ job.contents.special }}</p>
+			{% endif %}
+
+		</section>
+	{% else %}
+		<p>We currently do not have any openings.  Check back later!</p>
+	{% endfor %}
+	
 {% endblock %}

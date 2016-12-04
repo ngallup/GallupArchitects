@@ -27,6 +27,7 @@ def team():
     return render_template('team.html',
                            contact=contact)
 
+
 @app.route('/careers')
 def careers():
     '''Should read text files in a jobs folder with description,
@@ -42,11 +43,25 @@ def careers():
         
     # Inovoke Job class for cleanliness and remove empty contents
     jobs = [Job.Job(jobfile) for jobfile in jobfiles]
-    jobs = list(filter(lambda job: job.contents, jobs))
+    jobs = list(filter(lambda job: job.contents, jobs))     
                 
     # Careers will need to react dynamically to job list
     return render_template('careers.html',
-                           contact=contact)
+                           contact=contact,
+                           joblist=jobs)
+
+#@app.route('/careers/<jobtitle>')    
+#def createjobpages(jobs):
+#    jobNum = len(jobs)
+#       
+#    for job in range(jobNum):
+#        print job #DELETE
+#        @app.route('/careers/job%s' % job)
+#        def jobpage():
+#            job = jobs[job]
+#            yield render_template('job.html',
+#                                  job=job)
+
 
 @app.route('/contact')
 def contactus():
