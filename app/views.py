@@ -14,7 +14,6 @@ contact = {
 @app.route('/')
 @app.route('/home')
 def homepage():
-    print help(contact)
     return render_template('home.html',
                            contact=contact)
     
