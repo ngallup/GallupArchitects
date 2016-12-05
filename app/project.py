@@ -1,4 +1,5 @@
 import os
+import string
 
 class Project(object):
     def __init__(self, projectfolder):
@@ -6,12 +7,17 @@ class Project(object):
         
         description, images, paths = self.getFiles(projectfolder)
         self.data['longtext'] = description
-        self.data['shortext'] = self.data['longtext'][:400] + "..."
+        #self.data['shorttext'] = self.data['longtext'][:200] + "..."
+        self.data['shorttext'] = self.truncate_body(description, 200)
         self.data['images'] = images
         self.data['paths'] = paths
         self.data['folder'] = os.path.basename(projectfolder)
         
     def getFiles(self, projectfolder):
+        '''
+        Get list of files under the specified project folder including
+        description.txt and all images for potential slideshow
+        '''
         text = ''
         imgformats = ('.jpg', '.jpeg', '.gif', '.png' )
         
@@ -23,3 +29,16 @@ class Project(object):
             
         images = list(filter(lambda x: x.lower().endswith(imgformats), filelist))
         return text, images, filepaths
+    
+    def truncate_body(self, text, numchars):
+        '''
+        Return truncated body of text such that no words are half
+        displayed
+        '''
+        subtext = text[:numchars]
+        if subtext[-1] in string.whitespace: # Return 1 less if whitespace
+            return subtext[:-2] + "..."
+        elif subtext[-1] in string.punctuation: # Return if period, etc.
+            return subtext
+        else:
+            return self.truncate_body(subtext, numchars-1)
