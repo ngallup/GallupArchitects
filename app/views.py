@@ -1,7 +1,10 @@
 from flask import render_template
 from app import app
 from app import Job
+from app import project
 import os
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 contact = {
      'name': 'Timothy Gallup',
@@ -17,10 +20,16 @@ def homepage():
     return render_template('home.html',
                            contact=contact)
     
+projectdir = os.path.join(basedir, 'projects')
+subdirs = [os.path.join(projectdir, subdir) for subdir in os.listdir(projectdir)]
+projectlist = [project.Project(subdir) for subdir in subdirs]
+    
+    
 @app.route('/projects')
 def projects():
     return render_template('projects.html',
-                           contact=contact)
+                           contact=contact,
+                           proj=projectlist)    
 
 @app.route('/team')
 def team():
@@ -49,18 +58,6 @@ def careers():
     return render_template('careers.html',
                            contact=contact,
                            joblist=jobs)
-
-#@app.route('/careers/<jobtitle>')    
-#def createjobpages(jobs):
-#    jobNum = len(jobs)
-#       
-#    for job in range(jobNum):
-#        print job #DELETE
-#        @app.route('/careers/job%s' % job)
-#        def jobpage():
-#            job = jobs[job]
-#            yield render_template('job.html',
-#                                  job=job)
 
 
 @app.route('/contact')

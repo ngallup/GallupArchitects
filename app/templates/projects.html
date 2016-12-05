@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<head>THERE'S NOTHING HERE YET</head>
+<section>
+	{% for p in proj %}
+		<div class="pcontainer">
+			<img scr="{{ url_for('projects', filename="%s/%s" % (p.data.folder, p.data.images[0])) }}" alt="Whoops!">
+		</div>
+	{% endfor %}
+</section>
 {% endblock %}
