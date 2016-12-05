@@ -20,7 +20,7 @@ def homepage():
     return render_template('home.html',
                            contact=contact)
     
-projectdir = os.path.join(basedir, 'projects')
+projectdir = os.path.abspath(os.path.join(os.path.join(basedir, 'static'), 'projects'))
 subdirs = [os.path.join(projectdir, subdir) for subdir in os.listdir(projectdir)]
 projectlist = [project.Project(subdir) for subdir in subdirs]
     

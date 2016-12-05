@@ -57,12 +57,23 @@
 .pcontainer {
 	position: relative;
 	display: inline-block;
+	vertical-align: top;
 	width: 300px;
 	height: 300px;
 	margin: 1em;
 	
 	outline: solid;
 	outline-color: black;
+}
+
+.ppic {
+	position: relative;
+	max-width: 100%;
+	top: 0;
+}
+
+.pdescription {
+	position: relative;
 }
 
 article {
