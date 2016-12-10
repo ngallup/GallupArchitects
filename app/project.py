@@ -2,12 +2,18 @@ import os
 import string
 
 class Project(object):
+    '''
+    The Project class holds data pertaining to past and current
+    architecture projects.  It reads a text file from its current
+    directory and keeps a list of all associated images by virtue of
+    existing in the same directory.  To be used for dynamic generation
+    of slideshows for showing off a portfolio
+    '''
     def __init__(self, projectfolder):
         self.data = {}
         
         description, images, paths = self.getFiles(projectfolder)
         self.data['longtext'] = description
-        #self.data['shorttext'] = self.data['longtext'][:200] + "..."
         self.data['shorttext'] = self.truncate_body(description, 200)
         self.data['images'] = images
         self.data['paths'] = paths

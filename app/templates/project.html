@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+	<div class="slidescontainer">
+		{% for image in proj.data.images %}
+			<img class='slides' src="{{ url_for('static', filename="projects/%s/%s" % (proj.data.folder, image)) }}" alt="Whoops!">
+		{% endfor %}
+		<div class="description">proj.data.longtext</div>
+	</div>
+</section>
+{% endblock %}

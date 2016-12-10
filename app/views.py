@@ -23,13 +23,27 @@ def homepage():
 projectdir = os.path.abspath(os.path.join(os.path.join(basedir, 'static'), 'projects'))
 subdirs = [os.path.join(projectdir, subdir) for subdir in os.listdir(projectdir)]
 projectlist = [project.Project(subdir) for subdir in subdirs]
-    
+print projectlist[0].data    #DELETE
     
 @app.route('/projects')
-def projects():
-    return render_template('projects.html',
-                           contact=contact,
-                           proj=projectlist)    
+@app.route('/projects/<proj>')
+def projects(proj=None):
+    # If no project specified, return overview default page
+    if proj == None:
+        return render_template('projects.html',
+                               contact=contact,
+                               proj=projectlist)
+        
+    # If project specified, or link clicked, return associated project
+    # page
+    else:
+        thisProj = None
+        for project in projectlist:
+            if project.data['folder'] == proj:
+                thisProj = project
+        return render_template('project.html',
+                               contact=contact,
+                               proj=thisProj)
 
 @app.route('/team')
 def team():

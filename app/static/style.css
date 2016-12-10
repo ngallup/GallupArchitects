@@ -66,6 +66,13 @@
 	outline-color: black;
 }
 
+.plink:link {
+	text-decoration: none;
+}
+.plink:visited {
+	text-decoration: none;
+}
+
 .ppic {
 	position: relative;
 	max-width: 100%;
