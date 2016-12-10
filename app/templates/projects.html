@@ -3,10 +3,12 @@
 {% block content %}
 <section>
 	{% for p in proj %}
+		<a class="plink" href="{{ url_for('projects', proj=p.data.folder) }}">
 		<div class="pcontainer">
 			<img class='ppic' src="{{ url_for('static', filename="projects/%s/%s" % (p.data.folder, p.data.images[0])) }}" alt="Whoops!">
 			<div class='pdescription'>{{ p.data.shorttext }}</div>
 		</div>
+		</a>
 	{% endfor %}
 </section>
 {% endblock %}
